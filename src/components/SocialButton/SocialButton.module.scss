@@ -1,0 +1,33 @@
+@use "../../assets/scss/variables";
+@import "../../assets/scss/global";
+
+.facebook {
+  background-color: #475993;
+  color: #ffffff;
+  @include buttonStyle();
+
+  span {
+    font-size: 18px;
+    margin-left: 10px;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.google {
+  background-color: #ffffff;
+  @include buttonStyle();
+
+  span {
+    font-size: 18px;
+    margin-left: 10px;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -1,0 +1,31 @@
+@use "../../assets/scss/variables" as var;
+
+.titlePage {
+  position: relative;
+  margin-bottom: 30px;
+  margin-right: 50px;
+  h2 {
+    color: var.$primary-color;
+    width: 300px;
+    font-size: 35px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .hojaSup {
+    position: absolute;
+    top: 1px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .hojaInf {
+    position: absolute;
+    bottom: -30px;
+    left: -4px;
+    width: 70px;
+    height: 70px;
+  }
+}

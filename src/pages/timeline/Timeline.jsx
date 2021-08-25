@@ -1,13 +1,7 @@
-import React, { Component } from 'react'
+import React from "react";
 
-class Timeline extends Component {
-    render() {
-        return (
-            <div>
-                timeline
-            </div>
-        )
-    }
+function Timeline() {
+  return <div>timeline</div>;
 }
 
-export default Timeline
+export default Timeline;

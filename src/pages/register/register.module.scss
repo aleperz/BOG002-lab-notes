@@ -1,0 +1,23 @@
+@use "../../assets/scss/variables.scss" as var;
+
+.registerContainer {
+  width: 340px;
+  margin-right: 20px;
+
+  p {
+    color: var.$primary-color;
+    margin-bottom: 10px;
+    text-align: center;
+    &:hover {
+      color: var.$green;
+    }
+  }
+  a {
+    text-decoration-color: var.$primary-color;
+    display: block;
+    &:hover {
+      text-decoration-color: var.$green;
+      color: var.$green;
+    }
+  }
+}

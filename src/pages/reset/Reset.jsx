@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./register.module.scss";
+import styles from "../../pages/reset/reset.module.scss";
 import Layout from "../../components/Layout/Layout";
 import Logo from "../../components/Logo/Logo";
 import TitlePage from "../../components/TitlePage/TitlePage";
@@ -11,10 +11,8 @@ import { Formulario, MensajeError, MensajeExito } from "../../elementos/formular
 import { Link } from "react-router-dom";
 import { auth } from "../../firebaseConfig";
 
-function Register() {
+function Reset() {
   const [email, setEmail] = useState({ campo: "", valido: null });
-  const [nombre, setNombre] = useState({ campo: "", valido: null });
-  const [password, setPassword] = useState({ campo: "", valido: null });
   const [validForm, setValidForm] = useState({ campo: "", valido: null });
 
   const expresiones = {
@@ -25,30 +23,13 @@ function Register() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (email.valido === "true" && password.valido === "true" && nombre.valido === "true") {
-      setValidForm({ campo: "", valido: true });
-
-      try {
-        const res = await auth.createUserWithEmailAndPassword(email.campo, password.campo);
-        await res.user.updateProfile({
-          displayName: nombre.campo,
-        });
-        setValidForm({ campo: `${res.user.displayName} Esta registrado`, valido: true });
-        setNombre({ campo: "", valido: null });
-        setEmail({ campo: "", valido: null });
-        setPassword({ campo: "", valido: null });
-      } catch (error) {
-        if (error.code === "auth/email-already-in-use") {
-          setValidForm({
-            campo: "Correo electronico ya esta en uso",
-            valido: false,
-          });
-        } else {
-          setValidForm({ campo: "Registro no exitoso", valido: false });
-        }
-      }
+    if (email.valido === "true") {
+      auth.sendPasswordResetEmail(email.campo);
+      setValidForm({ campo: "correo para reset enviado", valido: true });
+      setEmail({ campo: "", valido: null });
     } else {
-      setValidForm({ campo: "Complete los campos", valido: false });
+      setValidForm({ campo: "complete los campos", valido: false });
+      setEmail({ campo: "", valido: null });
     }
   };
 
@@ -57,17 +38,6 @@ function Register() {
       <div className={styles.registerContainer}>
         <TitlePage>Registro</TitlePage>
         <Formulario className={styles.inputContainer} onSubmit={onSubmit}>
-          <InputCommon
-            name="nombre"
-            type="text"
-            placeholder="Introduce un nombre de perfil"
-            leyendaError="Introduce un nombre para tu perfil"
-            setState={setNombre}
-            state={nombre}
-            expresionRegular={expresiones.nombre}
-          >
-            Nombre
-          </InputCommon>
           <InputCommon
             name="email"
             type="email"
@@ -79,17 +49,6 @@ function Register() {
           >
             Correo electronico
           </InputCommon>
-          <InputCommon
-            name="password"
-            type="password"
-            placeholder="Contraseña"
-            leyendaError="la contraseña debe contener entre 6 a 12 dígitos"
-            setState={setPassword}
-            state={password}
-            expresionRegular={expresiones.password}
-          >
-            Contraseña
-          </InputCommon>
           {validForm.valido === false && (
             <MensajeError>
               <p>
@@ -99,12 +58,9 @@ function Register() {
               </p>
             </MensajeError>
           )}
-          <ButtonMain type="submit">Registrarme</ButtonMain>
+          <ButtonMain type="submit">Restablecer</ButtonMain>
           {validForm.valido === true && <MensajeExito>{validForm.campo}</MensajeExito>}
         </Formulario>
-        <Link className={styles.link} to="/login">
-          <p>¿Ya tienes una cuenta? Inicia sesión</p>
-        </Link>
       </div>
       <div>
         <Logo></Logo>
@@ -113,4 +69,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Reset;

@@ -1,0 +1,53 @@
+@use "../../assets/scss/variables.scss" as var;
+
+.hrContainer {
+  display: table;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 2px;
+  color: var.$primary-color;
+  position: relative;
+  text-align: center;
+  width: 85%;
+
+  &::before,
+  &::after {
+    border-top: 1px solid var.$primary-color;
+    content: "";
+    display: table-cell;
+    position: relative;
+    top: 0.8em;
+    width: 42%;
+  }
+}
+
+.inputContainer {
+  margin-bottom: 20px;
+}
+
+.loginContainer {
+  width: 320px;
+  margin-right: 20px;
+}
+
+.linkRedirect {
+  font-size: 15px;
+  color: var.$primary-color;
+  margin-bottom: 40px;
+  text-align: center;
+  p {
+    color: var.$primary-color;
+    margin-bottom: 10px;
+    &:hover {
+      color: var.$green;
+    }
+  }
+  a {
+    text-decoration-color: var.$primary-color;
+    display: block;
+    &:hover {
+      text-decoration-color: var.$green;
+      color: var.$green;
+    }
+  }
+}

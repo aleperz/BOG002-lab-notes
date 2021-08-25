@@ -1,0 +1,17 @@
+@import "../../assets/scss/global.scss";
+
+.main-home {
+  @extend %layout;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-login {
+  @extend %layout;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 150px;
+}
