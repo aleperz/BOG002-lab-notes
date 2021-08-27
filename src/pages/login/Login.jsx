@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Layout from "../../components/Layout/Layout";
 import styles from "./login.module.scss";
 import SocialButton from "../../components/SocialButton/SocialButton";
@@ -11,8 +11,9 @@ import { Formulario, MensajeError } from "../../elementos/formularios";
 import ButtonMain from "../../components/ButtonMain/ButtonMain";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { auth } from "../../firebaseConfig";
+import { Link, Redirect } from "react-router-dom";
+import firebase from "../../config/firebaseConfig";
+import { AuthContext } from "../../services/Auth";
 
 function Login() {
   const [email, setEmail] = useState({ campo: "", valido: null });
@@ -29,7 +30,8 @@ function Login() {
     if (email.valido === "true" && password.valido === "true") {
       setValidForm(true);
 
-      auth
+      firebase
+        .auth()
         .signInWithEmailAndPassword(email.campo, password.campo)
         .then((res) => console.log("usuario logueado"))
         .catch((err) => console.log(err.message));
@@ -41,13 +43,18 @@ function Login() {
     }
   };
 
+  const { currentUser } = useContext(AuthContext);
+  if (currentUser) {
+    return <Redirect to="/timeline" />;
+  }
+
   return (
     <Layout type="main-login">
       <div className={styles.loginContainer}>
         <TitlePage>Iniciar Sesion</TitlePage>
-        {/* <SocialButton type="facebook" imgSrc={fbIcon}>
+        <SocialButton type="facebook" imgSrc={fbIcon}>
           Continuar con Facebook
-        </SocialButton> */}
+        </SocialButton>
         <SocialButton type="google" imgSrc={googleIcon}>
           Continuar con Google
         </SocialButton>

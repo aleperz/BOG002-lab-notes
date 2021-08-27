@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Formulario, MensajeError, MensajeExito } from "../../elementos/formularios";
 import { Link } from "react-router-dom";
-import { auth } from "../../firebaseConfig";
+import firebase from "../../config/firebaseConfig";
 
 function Register() {
   const [email, setEmail] = useState({ campo: "", valido: null });
@@ -29,7 +29,9 @@ function Register() {
       setValidForm({ campo: "", valido: true });
 
       try {
-        const res = await auth.createUserWithEmailAndPassword(email.campo, password.campo);
+        const res = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email.campo, password.campo);
         await res.user.updateProfile({
           displayName: nombre.campo,
         });
@@ -103,7 +105,7 @@ function Register() {
           {validForm.valido === true && <MensajeExito>{validForm.campo}</MensajeExito>}
         </Formulario>
         <Link className={styles.link} to="/login">
-          <p>¿Ya tienes una cuenta? Inicia sesión</p>
+          <span>¿Ya tienes una cuenta? Inicia sesión</span>
         </Link>
       </div>
       <div>

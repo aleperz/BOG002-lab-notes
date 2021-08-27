@@ -7,6 +7,7 @@ import {
   IconoEye,
   LeyendaError,
 } from "../../elementos/formularios";
+
 import { faCheckCircle, faEye, faEyeSlash, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 function InputCommon({

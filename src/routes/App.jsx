@@ -6,19 +6,23 @@ import Timeline from "../pages/timeline/Timeline";
 import NotFound from "../pages/notFound/NotFound";
 import Home from "../pages/home/Home";
 import Reset from "../pages/reset/Reset";
+import { PrivateRoute, PublicRoute } from "./helperRoutes";
+import { AuthProvider } from "../services/Auth";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Home}></Route>
-        <Route exact path="/login" component={Login}></Route>
-        <Route exact path="/register" component={Register}></Route>
-        <Route exact path="/timeline" component={Timeline}></Route>
-        <Route exact path="/reset" component={Reset}></Route>
-        <Route component={NotFound}></Route>
-      </Switch>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Switch>
+          <PublicRoute exact path="/" component={Home} />
+          <PublicRoute exact path="/login" component={Login} />
+          <PublicRoute exact path="/register" component={Register} />
+          <PublicRoute exact path="/reset" component={Reset} />
+          <PrivateRoute exact path="/timeline" component={Timeline} />
+          <Route component={NotFound}></Route>
+        </Switch>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

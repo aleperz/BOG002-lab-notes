@@ -8,8 +8,7 @@ import ButtonMain from "../../components/ButtonMain/ButtonMain";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { Formulario, MensajeError, MensajeExito } from "../../elementos/formularios";
-import { Link } from "react-router-dom";
-import { auth } from "../../firebaseConfig";
+import firebase from "../../config/firebaseConfig";
 
 function Reset() {
   const [email, setEmail] = useState({ campo: "", valido: null });
@@ -24,7 +23,7 @@ function Reset() {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (email.valido === "true") {
-      auth.sendPasswordResetEmail(email.campo);
+      firebase.auth().sendPasswordResetEmail(email.campo);
       setValidForm({ campo: "correo para reset enviado", valido: true });
       setEmail({ campo: "", valido: null });
     } else {
