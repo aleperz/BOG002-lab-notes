@@ -34,8 +34,8 @@ function Reset() {
 
   return (
     <Layout type="main-login">
-      <div className={styles.registerContainer}>
-        <TitlePage>Registro</TitlePage>
+      <div className={styles.resetContainer}>
+        <TitlePage>Restablecer contraseña</TitlePage>
         <Formulario className={styles.inputContainer} onSubmit={onSubmit}>
           <InputCommon
             name="email"

@@ -1,0 +1,27 @@
+@use "../../assets/scss/variables.scss" as var;
+
+.resetContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin-right: 20px;
+
+  span {
+    display: block;
+    color: var.$primary-color;
+    margin-bottom: 10px;
+    text-align: center;
+    &:hover {
+      color: var.$green;
+    }
+  }
+  a {
+    text-decoration-color: var.$primary-color;
+    display: block;
+    &:hover {
+      text-decoration-color: var.$green;
+      color: var.$green;
+    }
+  }
+}

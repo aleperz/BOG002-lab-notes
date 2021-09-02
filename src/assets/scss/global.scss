@@ -7,6 +7,15 @@
   background-position: bottom;
 }
 
+%layoutTimeline {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("../../assets/fondo-dos.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+}
+
 @mixin buttonStyle {
   border-radius: 5px;
   border: none;

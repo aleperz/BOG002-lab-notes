@@ -1,22 +1,16 @@
 import React from "react";
-import firebase from "../../config/firebaseConfig";
+
+import AsideBar from "../../components/AsideBar/AsideBar";
+import Layout from "../../components/Layout/Layout";
 
 function Timeline() {
-  const signOut = () =>
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        console.log("sesion cerrada");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   return (
-    <div>
-      <p>timeline</p>
-      <button onClick={() => signOut()}>Cerrar Sesioon </button>
-    </div>
+    <Layout type="main-timeline">
+      <div>
+        <AsideBar></AsideBar>
+        <div></div>
+      </div>
+    </Layout>
   );
 }
 

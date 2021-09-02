@@ -1,12 +1,14 @@
 @use "../../assets/scss/variables" as var;
 
 .titlePage {
+  display: flex;
+  justify-content: center;
   position: relative;
-  margin-bottom: 30px;
-  margin-right: 50px;
+  margin: 0px auto 30px;
+  width: fit-content;
   h2 {
     color: var.$primary-color;
-    width: 300px;
+    width: fit-content;
     font-size: 35px;
     position: relative;
     z-index: 1;
@@ -16,7 +18,7 @@
   .hojaSup {
     position: absolute;
     top: 1px;
-    right: 10px;
+    right: -30px;
     width: 40px;
     height: 40px;
   }
@@ -24,7 +26,7 @@
   .hojaInf {
     position: absolute;
     bottom: -30px;
-    left: -4px;
+    left: -40px;
     width: 70px;
     height: 70px;
   }
